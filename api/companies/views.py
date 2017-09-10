@@ -30,9 +30,7 @@ class CompanyListAPIView(APIView):
 
     def post(self, request):
         data = request.data
-        serializer = CompanySerializer(data=data,
-                                       context={'creator_id': data.get(
-                                           'creator_id')})
+        serializer = CompanySerializer(data=data)
         if not serializer.is_valid(raise_exception=True):
             return Response(serializer.errors, status=HTTP_400_BAD_REQUEST)
         new_data = serializer.validated_data

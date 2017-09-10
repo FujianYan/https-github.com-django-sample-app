@@ -38,3 +38,22 @@ To run all the tests for all api:
 ./manage.py test api
 ```
 --------------------------------------------------------------------------------
+
+## 4. API Document
+
+Please refer to [here](https://github.com/gywangbruce/django-sample-app/API_DOCUMENT.md).
+
+## 5. Development Instruction
+
+Our final product could help companies to manage their hiring pipeline. This sample server give user ability to create/read/update/delete company information and manage the stage level information within the company's hiring pipeline.
+
+There are two simple apps within this server: `companies` and `stages`. They are under the `api` folder. The `companies` app is an example while you need to finish the `stages` app according to our API document. Below is the instruction:
+
+1. The `stage` model is already defined for you. You need to create the `views.py`, `serializers.py` and `tests.py`
+.
+
+Unlike `companies` app, `stages` app has an endpoint to change the order of different stages. This is pretty tricky so please choose any method you are comfortable with to achieve this. A challenging part is how to define the `validate` method in serializer beautifully.
+
+`stage` model has a field called `stage_type`. It's saved in database as int but should be rendered as string. Please check API document for detailed example.
+
+Remember to write up your unit test in `tests.py`

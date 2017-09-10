@@ -17,6 +17,7 @@ from rest_framework.serializers import (
 
 class CompanySerializer(ModelSerializer):
     company_id = IntegerField(source='id', read_only=True)
+    creator_id = IntegerField()
 
     class Meta:
         model = Company
@@ -26,10 +27,6 @@ class CompanySerializer(ModelSerializer):
             'creator_id',
         ]
 
-        extra_kwargs = {
-            'creator_id': {'read_only': True}
-        }
-
     def validate(self, data):
         company_name = data.get('company_name')
         if is_company_already_registered(company_name):
@@ -37,7 +34,7 @@ class CompanySerializer(ModelSerializer):
         return data
 
     def create(self, validated_data):
-        creator_id = self.context['creator_id']
+        creator_id = validated_data.pop('creator_id')
         # create company
         company = create_company(creator_id, **validated_data)
         return company
