@@ -210,7 +210,7 @@ Response:
 }
 ```
 
-This endpoint creates new stage under the company.
+This endpoint creates new stage under the company. The order filed will be automatic populated for the new stage.
 
 ### HTTP Request
 
