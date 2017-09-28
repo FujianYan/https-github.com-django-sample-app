@@ -28,8 +28,7 @@ class CompanyListAPIViewTestCase(BaseTestCase):
         """
         # post company
         company_name = random_string()
-        self.data = {'company_name': company_name,
-                     'creator_id': self.users['admin'].user.id}
+        self.data = {'company_name': company_name}
         response = self.users['admin'].client.post(self.url, self.data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
@@ -37,8 +36,7 @@ class CompanyListAPIViewTestCase(BaseTestCase):
         """
         POST /api/companies/ fails for company already exists
         """
-        self.data = {'company_name': self.companies[0].company_name,
-                     'creator_id': self.users['admin'].user.id}
+        self.data = {'company_name': self.companies[0].company_name}
         response = self.users['admin'].client.post(self.url, self.data)
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
@@ -46,15 +44,14 @@ class CompanyListAPIViewTestCase(BaseTestCase):
         """
         POST /api/companies/ fails without company_name
         """
-        response = self.users['admin'].client.post(self.url, {
-            'creator_id': self.users['admin'].user.id})
+        response = self.users['admin'].client.post(self.url, {})
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
 
 class CompanyDetailAPIViewTestCase(BaseTestCase):
     def setUp(self):
         super(CompanyDetailAPIViewTestCase, self).setUp()
-        self.test_company = create_random_company(self.users['admin'].user.id)
+        self.test_company = create_random_company()
         self.url = '/api/companies/' + str(self.test_company.id) + '/'
 
     def test_get_company(self):

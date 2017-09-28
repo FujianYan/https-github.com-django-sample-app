@@ -8,7 +8,3 @@ class Company(models.Model):
 
     id = models.AutoField(primary_key=True)
     company_name = models.CharField(max_length=64, null=False)
-    creator = models.ForeignKey(
-        User,
-        db_column='creator_id'
-    )

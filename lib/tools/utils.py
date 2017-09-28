@@ -10,10 +10,8 @@ from lib.tools.payload_generator import (
 from lib.users.create import create_user
 
 
-def create_random_company(user_id):
-    company_data = generate_company_data(
-        creator_id=user_id
-    )
+def create_random_company():
+    company_data = generate_company_data()
     company = create_company(**company_data)
     return company
 
@@ -47,6 +45,6 @@ class BaseTestCase(APITestCase):
         }
 
         # create companies
-        company1 = create_random_company(user_id=self.users['admin'].user.id)
-        company2 = create_random_company(user_id=self.users['admin'].user.id)
+        company1 = create_random_company()
+        company2 = create_random_company()
         self.companies = [company1, company2]

@@ -25,7 +25,6 @@ def generate_company_data(**data):
     Generate payload data for company api
     """
     company_data = {
-        'creator_id': data.get('creator_id'),
         'company_name': data.get('company_name', random_string())
     }
     return company_data
