@@ -58,6 +58,7 @@ coverage.xml
 *.log
 *_auto_*.py
 *_initial.py
+*_remove_*.py
 
 # Flask stuff:
 instance/
